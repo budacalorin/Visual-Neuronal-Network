@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 
 import Network
@@ -186,10 +188,24 @@ def onIterationFinished(network: Network.Network, results: Network.IterationResu
     if epochFinished:
         epochFinished = False
         print(f"Printing iteration\nExpected outcome:{results.expectedOutcome}\nActual outcome:{results.actualOutcome}")
-        clearDisplay()
-        drawNeuronActivations(results.activation)
-        drawAxonActivations(network.weights)
-        showDisplay()
+        drawActivations(network, results)
+        # time.sleep(5)
+        # print("Printing neuronal network state")
+        # drawNetwork(network)
+
+
+def drawActivations(network, results):
+    clearDisplay()
+    drawNeuronActivations(results.activation)
+    drawAxonActivations(network.weights)
+    showDisplay()
+
+
+def drawNetwork(network):
+    clearDisplay()
+    drawNeuronActivations(network.biases)
+    drawAxonActivations(network.weights)
+    showDisplay()
 
 
 def onEpochFinished(epochIndex: int):

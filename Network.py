@@ -164,9 +164,10 @@ def test(test_set, network: Network, onIterationFinished):
 
 
 def print_network(network: Network):
-    with open("result.txt", "a") as fd:
-        fd.write(network.weights)
-        fd.write(network.biases)
+    pass
+    # with open("result.txt", "a") as fd:
+    #     fd.write(network.weights)
+    #     fd.write(network.biases)
 
 
 def start(configuration, onEpochFinished, onIterationFinished):
@@ -188,7 +189,7 @@ def start(configuration, onEpochFinished, onIterationFinished):
         onEpochFinished(epochIndex)
 
         if result > configuration.expectedResult:
-            if contionous_success < configuration.expectedResult - 1:
+            if contionous_success < configuration.continousSuccess - 1:
                 contionous_success += 1
             else:
                 if test(data_sets.test_set, perceptrons, onIterationFinished) > configuration.expectedResult:
